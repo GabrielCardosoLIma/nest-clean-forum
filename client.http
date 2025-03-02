@@ -11,11 +11,10 @@ Content-Type: application/json
 ###
 
 # @name authenticate
-POST http://localhost:3333/accounts
+POST http://localhost:3333/sessions
 Content-Type: application/json
 
 {
-  "name": "Gabriel Cardoso",
   "email": "gabriel@example.com",
   "password": "123456"
 }
