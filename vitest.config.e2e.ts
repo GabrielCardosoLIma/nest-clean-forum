@@ -4,9 +4,10 @@ import { resolve } from "node:path";
 
 export default defineConfig({
   test: {
-    include: ['**/*.e2e-spec.ts'],
+    include: ["**/*.e2e-spec.ts"],
     globals: true,
     root: "./",
+    setupFiles: ["./test/setup-e2e.ts"],
   },
   plugins: [
     // This is required to build the test files with SWC
