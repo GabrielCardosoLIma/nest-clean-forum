@@ -21,7 +21,7 @@ export class FetchRecentQuestionsController {
   constructor(private readonly prisma: PrismaService) {}
 
   @Get()
-  @HttpCode(201)
+  @HttpCode(200)
   async handle(
     @Query("page", queryValidationPípe) page: PageQueryParamsSchema
   ) {
