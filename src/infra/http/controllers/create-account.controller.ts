@@ -36,7 +36,9 @@ export class CreateAcoountController {
     });
 
     if (userWithSameEmail) {
-      throw new ConflictException("User with same email already exists.");
+      throw new ConflictException(
+        "User with same e-mail address already exists."
+      );
     }
 
     const hashedPassword = await hash(password, 8);
