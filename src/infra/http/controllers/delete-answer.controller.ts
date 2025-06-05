@@ -9,7 +9,7 @@ import { CurrentUser } from "@/infra/auth/current-user-decorator";
 import { UserPayload } from "@/infra/auth/jwt.strategy";
 import { DeleteAnswerUseCase } from "@/domain/forum/application/use-cases/delete-answer";
 
-@Controller("/answer/:id")
+@Controller("/answers/:id")
 export class DeleteAnswerController {
   constructor(private readonly deleteAnswerUseCase: DeleteAnswerUseCase) {}
 
@@ -29,6 +29,5 @@ export class DeleteAnswerController {
     if (result.isLeft()) {
       throw new BadRequestException();
     }
-    
   }
 }
