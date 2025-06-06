@@ -36,6 +36,13 @@ describe("Upload attachment (E2E)", () => {
       .set("Authorization", `Bearer ${accessToken}`)
       .attach("file", "./test/e2e/sample-upload.png");
 
+    if (response.statusCode !== 201) {
+      console.log("Erro no upload:", response.statusCode, response.body);
+    }
+
     expect(response.statusCode).toBe(201);
+    expect(response.body).toEqual({
+      attachmentId: expect.any(String),
+    });
   });
 });
