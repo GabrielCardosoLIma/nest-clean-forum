@@ -11,12 +11,12 @@ import { AttachmentFactory } from "test/factories/make-attachment";
 import { QuestionFactory } from "test/factories/make-question";
 import { StudentFactory } from "test/factories/make-student";
 
-describe("Edit Answer (E2E)", () => {
+describe("Edit answer (E2E)", () => {
   let app: INestApplication;
   let prisma: PrismaService;
   let studentFactory: StudentFactory;
-  let answerFactory: AnswerFactory;
   let questionFactory: QuestionFactory;
+  let answerFactory: AnswerFactory;
   let attachmentFactory: AttachmentFactory;
   let answerAttachmentFactory: AnswerAttachmentFactory;
   let jwt: JwtService;
@@ -36,9 +36,9 @@ describe("Edit Answer (E2E)", () => {
     app = moduleRef.createNestApplication();
 
     prisma = moduleRef.get(PrismaService);
-    answerFactory = moduleRef.get(AnswerFactory);
-    questionFactory = moduleRef.get(QuestionFactory);
     studentFactory = moduleRef.get(StudentFactory);
+    questionFactory = moduleRef.get(QuestionFactory);
+    answerFactory = moduleRef.get(AnswerFactory);
     attachmentFactory = moduleRef.get(AttachmentFactory);
     answerAttachmentFactory = moduleRef.get(AnswerAttachmentFactory);
     jwt = moduleRef.get(JwtService);
@@ -46,7 +46,7 @@ describe("Edit Answer (E2E)", () => {
     await app.init();
   });
 
-  test("[POST] /answers/:questiId/answers", async () => {
+  test("[PUT] /answers/:id", async () => {
     const user = await studentFactory.makePrismaStudent();
 
     const accessToken = jwt.sign({ sub: user.id.toString() });
@@ -81,15 +81,15 @@ describe("Edit Answer (E2E)", () => {
       .put(`/answers/${answerId}`)
       .set("Authorization", `Bearer ${accessToken}`)
       .send({
-        content: "New answer",
+        content: "New answer content",
         attachments: [attachment1.id.toString(), attachment3.id.toString()],
       });
 
-    expect(response.status).toBe(204);
+    expect(response.statusCode).toBe(204);
 
     const answerOnDatabase = await prisma.answer.findFirst({
       where: {
-        content: "New answer",
+        content: "New answer content",
       },
     });
 
