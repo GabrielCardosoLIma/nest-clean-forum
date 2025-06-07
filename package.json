@@ -21,6 +21,7 @@
     "test:e2e:watch": "vitest --config ./vitest.config.e2e.ts"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.826.0",
     "@nestjs/common": "^11.0.1",
     "@nestjs/config": "^4.0.0",
     "@nestjs/core": "^11.0.1",
@@ -32,6 +33,7 @@
     "@vitest/coverage-v8": "^3.0.7",
     "bcryptjs": "^3.0.2",
     "dayjs": "^1.11.13",
+    "ioredis": "^5.6.1",
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
@@ -47,6 +49,7 @@
     "@nestjs/testing": "^11.0.1",
     "@types/bcryptjs": "^2.4.6",
     "@types/express": "^5.0.0",
+    "@types/multer": "^1.4.12",
     "@types/node": "^22.10.7",
     "@types/passport-jwt": "^4.0.1",
     "@types/supertest": "^6.0.2",
