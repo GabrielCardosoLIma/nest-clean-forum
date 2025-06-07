@@ -28,6 +28,7 @@ describe("Choose Question Best Answer (E2E)", () => {
     prisma = moduleRef.get(PrismaService);
     answerFactory = moduleRef.get(AnswerFactory);
     questionFactory = moduleRef.get(QuestionFactory);
+    answerFactory = moduleRef.get(AnswerFactory);
     studentFactory = moduleRef.get(StudentFactory);
     jwt = moduleRef.get(JwtService);
 

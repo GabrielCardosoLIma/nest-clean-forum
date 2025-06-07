@@ -13,6 +13,8 @@ import { InMemoryNotificationsRepository } from "test/repositories/in-memory-not
 import { makeQuestion } from "test/factories/make-question";
 import { MockInstance } from "vitest";
 import { waitFor } from "test/utils/wait-for";
+import { InMemoryStudentsRepository } from "test/repositories/in-memory-students-repository";
+import { InMemoryAttachmentsRepository } from "test/repositories/in-memory-attachments-repository";
 
 let inMemoryQuestionAttachmentRepository: InMemoryQuestionAttachmentRepository;
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository;
@@ -20,6 +22,8 @@ let inMemoryAnswersRepository: InMemoryAnswersRepository;
 let inMemoryAnswersAttachmentsRepository: InMemoryAnswerAttachmentRepository;
 let inMemoryNotificationsRepository: InMemoryNotificationsRepository;
 let sendNotificationUseCase: SendNotificationUseCase;
+let inMemoryStudentsRepository: InMemoryStudentsRepository;
+let inMemoryAttachmentsRepository: InMemoryAttachmentsRepository;
 
 let sendNotificationExecuteSpy: MockInstance<
   (
@@ -31,8 +35,12 @@ describe("On Answer Created", () => {
   beforeEach(() => {
     inMemoryQuestionAttachmentRepository =
       new InMemoryQuestionAttachmentRepository();
+    inMemoryStudentsRepository = new InMemoryStudentsRepository();
+    inMemoryAttachmentsRepository = new InMemoryAttachmentsRepository();
     inMemoryQuestionsRepository = new InMemoryQuestionsRepository(
-      inMemoryQuestionAttachmentRepository
+      inMemoryQuestionAttachmentRepository,
+      inMemoryAttachmentsRepository,
+      inMemoryStudentsRepository
     );
     inMemoryAnswersAttachmentsRepository =
       new InMemoryAnswerAttachmentRepository();
@@ -40,6 +48,9 @@ describe("On Answer Created", () => {
       inMemoryAnswersAttachmentsRepository
     );
     inMemoryNotificationsRepository = new InMemoryNotificationsRepository();
+    sendNotificationUseCase = new SendNotificationUseCase(
+      inMemoryNotificationsRepository
+    );
 
     sendNotificationUseCase = new SendNotificationUseCase(
       inMemoryNotificationsRepository
