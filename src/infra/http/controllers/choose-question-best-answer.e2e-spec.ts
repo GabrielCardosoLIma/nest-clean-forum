@@ -9,12 +9,12 @@ import { AnswerFactory } from "test/factories/make-answer";
 import { QuestionFactory } from "test/factories/make-question";
 import { StudentFactory } from "test/factories/make-student";
 
-describe("Choose Question Best Answer (E2E)", () => {
+describe("Choose question best answer (E2E)", () => {
   let app: INestApplication;
   let prisma: PrismaService;
   let studentFactory: StudentFactory;
-  let answerFactory: AnswerFactory;
   let questionFactory: QuestionFactory;
+  let answerFactory: AnswerFactory;
   let jwt: JwtService;
 
   beforeAll(async () => {
@@ -26,10 +26,9 @@ describe("Choose Question Best Answer (E2E)", () => {
     app = moduleRef.createNestApplication();
 
     prisma = moduleRef.get(PrismaService);
-    answerFactory = moduleRef.get(AnswerFactory);
+    studentFactory = moduleRef.get(StudentFactory);
     questionFactory = moduleRef.get(QuestionFactory);
     answerFactory = moduleRef.get(AnswerFactory);
-    studentFactory = moduleRef.get(StudentFactory);
     jwt = moduleRef.get(JwtService);
 
     await app.init();
